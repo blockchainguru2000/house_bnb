@@ -1,41 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import NavBar from "../pagecomponents/Navbar";
-
+import { house_advert_backend } from 'declarations/house_advert_backend';
+import { useEffect, useState } from "react";
 const HomePage = () => {
   const navigate=useNavigate();
-  const data = [
-    {
-      name: "Dahlonge",
-      location: "Georgia",
-      price: 234,
-      likes: 2,
-    },
-    {
-        name: "Dahlonge",
-        location: "Georgia",
-        price: 234,
-        likes: 2,
-      },
-       {
-      name: "Dahlonge",
-      location: "Georgia",
-      price: 234,
-      likes: 2,
-    },
-     {
-      name: "Dahlonge",
-      location: "Georgia",
-      price: 234,
-      likes: 2,
-    },
-    {
-        name: "Dahlonge",
-        location: "Georgia",
-        price: 234,
-        likes: 2,
-      },
-  ];
-
+ const [data,setData]=useState([]);
+ useEffect(()=>{
+  house_advert_backend . get_all_houses().then((result)=>{
+    console.log(result,"houses")
+    setData(result);
+  })
+},[]);
   return (
     <div className="max-w-[1400px] mx-auto pt-4 px-5">
       <NavBar />

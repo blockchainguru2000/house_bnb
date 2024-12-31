@@ -1,5 +1,6 @@
 import {  useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
+import AuthButton from "../auth/authbutton";
 
 const WelcomePage = () => {
     const navigate=useNavigate()
@@ -9,7 +10,7 @@ const WelcomePage = () => {
             <div className="">
 
                 <h1 className="font-bold py-2">All The Best Hotesl availabel</h1>
-                <Button onClick={()=>navigate("/home")}>Sign Up To Explore</Button>
+             <AuthButton/>
                
             </div>
         </div>

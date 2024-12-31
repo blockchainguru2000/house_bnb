@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import NavBar from "../pagecomponents/Navbar";
-
+import { house_advert_backend } from 'declarations/house_advert_backend';
 const AddHome = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -38,13 +38,21 @@ const AddHome = () => {
     data.addEventListener("load", () => setImage5(data.result));
     data.readAsDataURL(e.target.files[0]);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    house_advert_backend.register_new_house(name,title,description,location,country,image1,image2,image3,image4,image5).then((result) => {
+      console.log(result, "register");
+      alert("house registered");
+    });
+
+  };
   return (
     <div className="max-w-[1400px] mx-auto pt-4 px-5">
       <NavBar />
       <div className="mt-4 mb-5">
         <h1 className="font-bold text-center">List Your House to the world</h1>
         <div className="pb-4">
-          <form className="w-[700px] mx-auto border rounded-md p-2">
+          <form className="w-[700px] mx-auto border rounded-md p-2" onSubmit={handleSubmit}>
             <div className="flex flex-col my-3">
               <label htmlFor="">name of your property</label>
               <input

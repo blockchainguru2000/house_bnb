@@ -1,16 +1,15 @@
-import { useState } from 'react';
-import { Button } from './components/ui/button';
-import { CarouselDemo } from './components/ui/rt';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import WelcomePage from './pages/Welcome';
 import HomePage from './pages/HomePage';
 import HouseDetail from './pages/HouseDetail';
 import AddHome from './pages/AddHomePage';
 import ProfilePage from './pages/ProfilePage';
+import { AuthProvider } from './auth/authetication';
 //import { house_advert_backend } from 'declarations/house_advert_backend';
 
 function App() {
-  const [greeting, setGreeting] = useState('');
+ // const [greeting, setGreeting] = useState('');
 
   // function handleSubmit(event) {
   //   event.preventDefault();
@@ -23,6 +22,7 @@ function App() {
 
   return (
    <BrowserRouter>
+      <AuthProvider>
       <Routes>
 
         <Route path="/" element={<WelcomePage/>}/>
@@ -31,6 +31,7 @@ function App() {
          <Route path="addhome" element={<AddHome/>}/>
          <Route path="profile" element={<ProfilePage/>}/>
       </Routes>
+      </AuthProvider>
    </BrowserRouter>
   );
 }

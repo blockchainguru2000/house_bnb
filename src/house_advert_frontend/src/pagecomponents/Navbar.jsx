@@ -1,18 +1,30 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { LogOut } from "lucide-react";
+import { useAuth } from "../auth/authetication";
+import AuthButton from "../auth/mavbarbutton";
+import { useEffect } from "react";
 
 const NavBar = () => {
-  const navaigate=useNavigate();
+  const navaigate = useNavigate();
+  const { isAuthenticated, login, principal, logout } = useAuth();
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navaigate("/");
+    }
+  }, []);
   return (
     <div className="w-full flex justify-between ">
-      <h1 className="cursor-pointer font-bold" onClick={()=>Navigate("/home")}>TYHotelS</h1>
+      <h1
+        className="cursor-pointer font-bold"
+        onClick={() => navaigate("/home")}
+      >
+        TYHotelS
+      </h1>
       <div className="flex items-center space-x-10">
         <Link to="/home">Explore Hotes</Link>
         <Link to="/profile">Profile</Link>
-        <Button varaint="outline">
-          <LogOut />
-        </Button>
+        <AuthButton />
       </div>
     </div>
   );
