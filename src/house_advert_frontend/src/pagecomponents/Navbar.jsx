@@ -22,10 +22,10 @@ const NavBar = () => {
         className="cursor-pointer font-bold"
         onClick={() => navaigate("/home")}
       >
-        TYHotelS
+        TYHouSeS
       </h1>
       <div className="flex items-center space-x-10">
-        <Link to="/home">Explore Hotes</Link>
+        <Link to="/home">Explore Houses</Link>
         <Link to="/profile">Profile</Link>
         <AuthButton />
       </div>

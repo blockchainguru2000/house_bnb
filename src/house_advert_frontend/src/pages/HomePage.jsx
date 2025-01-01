@@ -20,7 +20,7 @@ const HomePage = () => {
           <>
             <div className="h-[70vh] flex justify-center items-center">
               <h1 className="font-bold">
-                Currently no hotels available to explore
+                Currently no houses available to explore
               </h1>
             </div>
           </>
