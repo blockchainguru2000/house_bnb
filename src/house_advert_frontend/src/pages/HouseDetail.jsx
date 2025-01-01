@@ -1,47 +1,55 @@
+import { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import NavBar from "../pagecomponents/Navbar";
-
+import { useParams } from "react-router-dom";
+import { house_advert_backend } from "declarations/house_advert_backend";
 const HouseDetail = () => {
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    house_advert_backend.get_house(id).then((result) => {
+      console.log(result, "house");
+      setData(result.ok);
+    });
+  }, []);
+  console.log(data, "data");
   return (
     <div className="max-w-[1400px] mx-auto pt-4 px-5">
       <NavBar />
-      <h1 className="font-bold mt-4">
-        AlpineCabin -Views! Outdoor shower, hot tub, more!
-      </h1>
-      <div className="flex gap-2 mt-4 h-[420px] border">
+      {data ? (
         <div className="">
-          <img src="../../m.png" alt="" className="w-full h-full" />
-        </div>
-        <div className="grid grid-cols-2 gap-2 flex-1">
-          <img src="../../m.png" alt="" className="w-full h-[200px]" />
-          <img src="../../m.png" alt="" className="w-full h-[200px]" />
-          <img src="../../m.png" alt="" className="w-full h-[200px]" />
-          <img src="../../m.png" alt="" className="w-full h-[200px]" />
-        </div>
-      </div>
-      <div className="mt-4 flex">
-        <div className="">
-          <h2 className="font-bold">
-            Treehouse in Dahlonega, Georgia, United States
-          </h2>
-          <p className="py-3">
-            Indulge in nature AND luxury on 40 private acres with views of the
-            North Georgia Mountains. Sourwood Cabin at Kindle Ridge
-          </p>
-          <div className="my-4">
-            <form action="">
-                <label htmlFor="">provide your comment</label>
-                <div className="">
-                    <textarea className="border" rows={5} cols={30}/>
+          {data.map((val, index) => (
+            <div className="" key={index}>
+              <div className="w-[500px] mx-auto border rounded-md p-2">
+                <h1 className="font-bold mt-4">
+                 {val.name}
+                </h1>
+                <div className=" mt-4 h-[420px] border">
+                  <div className="">
+                    <img  src={val?.image1} alt="" className="w-full h-[420px]" />
+                  </div>
                 </div>
-            </form>
-          </div>
-          <Button className="mb-5">Emails us</Button>
+                <div className="mt-4 flex">
+                  <div className="">
+                    <h2 className="font-bold">
+                      {val.location}
+                    </h2>
+                    <p className="py-3">
+                      {val.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center py-3">
+                  <Button>${val.price}</Button>
+                  <Button variant="outline">Contact us</Button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="w-[350px] pl-3 underline">
-            <h1 className="py-2 font-bold">comments</h1>
-        </div>
-      </div>
+      ) : (
+        <div className=""></div>
+      )}
     </div>
   );
 };

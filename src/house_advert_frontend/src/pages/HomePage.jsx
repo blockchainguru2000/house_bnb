@@ -29,8 +29,8 @@ const HomePage = () => {
             <div className="grid grid-cols-4 gap-4">
               {data.map((val, _index) => (
                 <div className="" key={_index}>
-                  <div className=" w-[300px] cursor-pointer" onClick={()=>navigate("/housedetail")}>
-                    <img src='../../m.png' alt={val.name} className="w-full h-[200px]"/>
+                  <div className=" w-[300px] cursor-pointer" onClick={()=>navigate(`/housedetail/${val.id}`)}>
+                    <img src={val?.image1} alt={val.name} className="w-full h-[200px]"/>
                     <div className="my-4">
                         <h2 className="font-bold">{val.name}, <span className="">{val.location}</span></h2>
                         <h4 className="my-3">price ${val.price}</h4>

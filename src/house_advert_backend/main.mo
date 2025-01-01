@@ -16,7 +16,10 @@ actor {
     title:Text;
     description:Text;
     location:Text;
-    country:Text;
+
+    price:Text;
+    email:Text;
+  
     image1:Text;
 
   };
@@ -60,7 +63,10 @@ actor {
     title:Text,
     description:Text,
     location:Text,
-    country:Text,
+   
+    price:Text,
+    email:Text,
+ 
     image1:Text,
   ):async Text{
      let id:Text=Int.toText(Time.now());
@@ -71,7 +77,10 @@ actor {
       title;
       description;
       location;
-      country;
+     
+      price;
+      email;
+      
       image1;
       
     };

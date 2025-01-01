@@ -1,50 +1,29 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import NavBar from "../pagecomponents/Navbar";
-import { house_advert_backend } from 'declarations/house_advert_backend';
+import { house_advert_backend } from "declarations/house_advert_backend";
 const AddHome = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-  const [country, setCountry] = useState("");
-  const [image2, setImage2] = useState("");
-  const [image3, setImage3] = useState("");
-  const [image4, setImage4] = useState("");
-  const [image5, setImage5] = useState("");
+  const [email, setEmail] = useState("");
   const [image1, setImage1] = useState("");
   const [title, setTitle] = useState("");
+  const [price,setPrice]=useState("");
   const handleimage1 = (e) => {
     const data = new FileReader();
     data.addEventListener("load", () => setImage1(data.result));
     data.readAsDataURL(e.target.files[0]);
   };
-  const handleimage2 = (e) => {
-    const data = new FileReader();
-    data.addEventListener("load", () => setImage2(data.result));
-    data.readAsDataURL(e.target.files[0]);
-  };
-  const handleimage3 = (e) => {
-    const data = new FileReader();
-    data.addEventListener("load", () => setImage3(data.result));
-    data.readAsDataURL(e.target.files[0]);
-  };
-  const handleimage4 = (e) => {
-    const data = new FileReader();
-    data.addEventListener("load", () => setImage4(data.result));
-    data.readAsDataURL(e.target.files[0]);
-  };
-  const handleimage5 = (e) => {
-    const data = new FileReader();
-    data.addEventListener("load", () => setImage5(data.result));
-    data.readAsDataURL(e.target.files[0]);
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    house_advert_backend.register_new_house(name,title,description,location,country,image1).then((result) => {
-      console.log(result, "register");
-      alert("house registered");
-    });
-
+    house_advert_backend
+      .register_new_house(name, title, description, location, price,email,image1)
+      .then((result) => {
+        console.log(result, "register");
+        alert("house registered");
+      });
   };
   return (
     <div className="max-w-[1400px] mx-auto pt-4 px-5">
@@ -52,14 +31,17 @@ const AddHome = () => {
       <div className="mt-4 mb-5">
         <h1 className="font-bold text-center">List Your House to the world</h1>
         <div className="pb-4">
-          <form className="w-[700px] mx-auto border rounded-md p-2" onSubmit={handleSubmit}>
+          <form
+            className="w-[700px] mx-auto border rounded-md p-2"
+            onSubmit={handleSubmit}
+          >
             <div className="flex flex-col my-3">
               <label htmlFor="">name of your property</label>
               <input
                 type="text"
                 value={title}
-                min={10}
-                max={50}
+                minLength={10}
+                maxLength={50}
                 required
                 className="border"
                 onChange={(e) => setTitle(e.target.value)}
@@ -70,8 +52,8 @@ const AddHome = () => {
               <input
                 type="text"
                 value={name}
-                min={10}
-                max={50}
+                minLength={10}
+                maxLength={50}
                 required
                 className="border"
                 onChange={(e) => setName(e.target.value)}
@@ -82,23 +64,35 @@ const AddHome = () => {
               <input
                 type="text"
                 value={location}
-                min={10}
-                max={50}
+                 minLength={10}
+                maxLength={50}
                 required
                 className="border"
                 onChange={(e) => setLocation(e.target.value)}
               />
             </div>
+            
             <div className="flex flex-col my-3">
-              <label htmlFor="">country of location of your property</label>
+              <label htmlFor="">your email address</label>
               <input
-                type="text"
-                value={country}
-                min={10}
-                max={50}
+                type="email"
+                value={email}
+               
                 required
                 className="border"
-                onChange={(e) => setCountry(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            
+             <div className="flex flex-col my-3">
+              <label htmlFor="">House price</label>
+              <input
+                type="number"
+                value={price}
+                 min={10}
+                required
+                className="border"
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
             <div className="flex flex-col mb-3">
@@ -116,22 +110,7 @@ const AddHome = () => {
             <div className="flex flex-col mb-3">
               <label htmlFor="">Image1 of your house </label>
               <input type="file" required onChange={handleimage1} />
-              <div className="flex flex-col mb-3">
-                <label htmlFor="">Image2 of your house </label>
-                <input type="file"  onChange={handleimage2} />
-              </div>
-              <div className="flex flex-col mb-3">
-                <label htmlFor="">Image3 of your house </label>
-                <input type="file"  onChange={handleimage3} />
-              </div>
-              <div className="flex flex-col mb-3">
-                <label htmlFor="">Image4 of your house </label>
-                <input type="file"  onChange={handleimage4} />
-              </div>
-              <div className="flex flex-col mb-3">
-                <label htmlFor="">Image5 of your house </label>
-                <input type="file" onChange={handleimage5} />
-              </div>
+              
             </div>
             <div className="mt-5 flex justify-end ">
               <Button type="submit">submit</Button>

@@ -1,0 +1,28 @@
+
+      <div className="w-[500px] mx-auto border rounded-md p-2">
+      
+      <div className="mt-4 flex">
+        <div className="">
+          <h2 className="font-bold">
+            Treehouse in Dahlonega, Georgia, United States
+          </h2>
+          <p className="py-3">
+            Indulge in nature AND luxury on 40 private acres with views of the
+            North Georgia Mountains. Sourwood Cabin at Kindle Ridge
+          </p>
+          <div className="my-4">
+            <form action="">
+                <label htmlFor="">provide your comment</label>
+                <div className="">
+                    <textarea className="border" rows={5} cols={30}/>
+                </div>
+            </form>
+          </div>
+          <Button className="mb-5">Emails us</Button>
+        </div>
+        <div className="w-[350px] pl-3 underline">
+            <h1 className="py-2 font-bold">comments</h1>
+        </div>
+      </div>
+      </div>
+    </div>

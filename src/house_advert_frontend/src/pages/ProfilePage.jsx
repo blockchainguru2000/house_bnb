@@ -1,4 +1,4 @@
-import { useNavigate, } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import NavBar from "../pagecomponents/Navbar";
 import { house_advert_backend } from "declarations/house_advert_backend";
@@ -13,9 +13,7 @@ const ProfilePage = () => {
     });
   }, []);
 
-
   const handledelete = (id) => {
-    
     house_advert_backend.delete_house(id).then((result) => {
       console.log(result, "delete");
     });
@@ -46,18 +44,13 @@ const ProfilePage = () => {
                 <div className="" key={_index}>
                   <div className=" w-[300px]">
                     <img
-                      src="../../m.png"
+                      src={val?.image1}
                       alt={val.name}
                       className="w-full h-[200px]"
                     />
                     <div className="my-4 flex justify-between">
-                      <Button variant="link">View house</Button>
-                      <Button
-                        variant="destructive"
-                        onClick={handledelete(val.id)}
-                      >
-                        Delete
-                      </Button>
+                      <Button variant="link" onClick={()=>navigate(`/housedetail/${val.id}`)}>View house</Button>
+                      
                     </div>
                   </div>
                 </div>
