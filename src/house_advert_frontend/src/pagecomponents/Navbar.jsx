@@ -4,9 +4,12 @@ import { LogOut } from "lucide-react";
 import { useAuth } from "../auth/authetication";
 import AuthButton from "../auth/mavbarbutton";
 import { useEffect } from "react";
-
+import { house_advert_backend } from 'declarations/house_advert_backend';
 const NavBar = () => {
   const navaigate = useNavigate();
+  house_advert_backend.register_user().then((result)=>{
+    console.log(result,"user");
+  })
   const { isAuthenticated, login, principal, logout } = useAuth();
   useEffect(() => {
     if (!isAuthenticated) {

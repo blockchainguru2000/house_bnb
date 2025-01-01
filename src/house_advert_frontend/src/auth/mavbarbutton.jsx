@@ -12,7 +12,7 @@ const AuthButton= () => {
     <>
       {isAuthenticated ? (
      
-        <Button  variant="outline"><LogOut onClick={logout}/> </Button>
+        <Button  onClick={logout}  variant="outline"><LogOut/> </Button>
      
       ) : (
        

@@ -40,7 +40,7 @@ const AddHome = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    house_advert_backend.register_new_house(name,title,description,location,country,image1,image2,image3,image4,image5).then((result) => {
+    house_advert_backend.register_new_house(name,title,description,location,country,image1).then((result) => {
       console.log(result, "register");
       alert("house registered");
     });
@@ -118,19 +118,19 @@ const AddHome = () => {
               <input type="file" required onChange={handleimage1} />
               <div className="flex flex-col mb-3">
                 <label htmlFor="">Image2 of your house </label>
-                <input type="file" required onChange={handleimage2} />
+                <input type="file"  onChange={handleimage2} />
               </div>
               <div className="flex flex-col mb-3">
                 <label htmlFor="">Image3 of your house </label>
-                <input type="file" required onChange={handleimage3} />
+                <input type="file"  onChange={handleimage3} />
               </div>
               <div className="flex flex-col mb-3">
                 <label htmlFor="">Image4 of your house </label>
-                <input type="file" required onChange={handleimage4} />
+                <input type="file"  onChange={handleimage4} />
               </div>
               <div className="flex flex-col mb-3">
                 <label htmlFor="">Image5 of your house </label>
-                <input type="file" required onChange={handleimage5} />
+                <input type="file" onChange={handleimage5} />
               </div>
             </div>
             <div className="mt-5 flex justify-end ">

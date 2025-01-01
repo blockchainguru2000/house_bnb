@@ -18,10 +18,7 @@ actor {
     location:Text;
     country:Text;
     image1:Text;
-    image2:Text;
-    image3:Text;
-    image4:Text;
-    image5:Text;
+
   };
   type User={
     id:Principal;
@@ -65,10 +62,6 @@ actor {
     location:Text,
     country:Text,
     image1:Text,
-    image2:Text,
-    image3:Text,
-    image4:Text,
-    image5:Text,
   ):async Text{
      let id:Text=Int.toText(Time.now());
     let new_house:House={
@@ -80,10 +73,7 @@ actor {
       location;
       country;
       image1;
-      image2;
-      image3;
-      image4;
-      image5;
+      
     };
 
     //get user
@@ -173,6 +163,19 @@ actor {
       };
       case (?found){
         return #ok(?found)
+      }
+    }
+  };
+
+  //get my houses
+  public shared ({caller}) func get_my_houses():async Result.Result<User,Text>{
+
+    switch(houseowners.get(caller)){
+      case (null){
+        return #err("failed")
+      };
+      case(?found){
+        return #ok(found)
       }
     }
   }
